@@ -21,6 +21,7 @@ RDEPEND="
 	app-i18n/ibus[python(+),${PYTHON_USEDEP}]
 	>=app-i18n/libcangjie-1.4.0
 	>=dev-python/cangjie-1.5.0[${PYTHON_USEDEP}]
+	gui-libs/libadwaita[introspection]
 	media-libs/gsound[introspection]
 	nls? ( virtual/libintl )
 "
@@ -49,6 +50,7 @@ src_test() {
 src_install() {
 	python_install() {
 		meson_src_install
+		python_fix_shebang "${ED}"/usr/bin "${ED}"/usr/libexec
 		python_optimize
 	}
 	python_foreach_impl python_install
